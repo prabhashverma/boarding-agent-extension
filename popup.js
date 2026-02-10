@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function () {
     responseSection.style.display = 'block';
     clearStreamViews();
 
-    var apiUrl = apiUrlOverride || 'https://boarding-agent-api-production.up.railway.app/v1/validate-google-flight?stream=true';
+    var apiUrl = apiUrlOverride || 'https://boarding-agent-api-production.up.railway.app/v1/checkmyflight?stream=true';
     var response = await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -547,11 +547,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var jsonStr = JSON.stringify(payload, null, 2);
         showRequestJson(jsonStr);
-        await sendPayloadToApi(
-          jsonStr,
-          'validate-structured-test',
-          'https://boarding-agent-api-production.up.railway.app/v1/validate?stream=true'
-        );
+        await sendPayloadToApi(jsonStr, 'validate-structured-test');
       } catch (e) {
         var errMsg = (e && e.message) || 'Failed';
         showStatus('Error: ' + errMsg, 'error');
