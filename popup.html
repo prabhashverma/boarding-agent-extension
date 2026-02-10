@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #fafbfc;
+      --surface: #ffffff;
+      --border: #e1e5eb;
+      --border-focus: #2563eb;
+      --text: #1a1d21;
+      --text-muted: #6b7280;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --success: #059669;
+      --success-soft: #ecfdf5;
+      --error: #dc2626;
+      --error-soft: #fef2f2;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+    body {
+      width: 760px;
+      min-height: 680px;
+      font-family: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 20px;
+      line-height: 1.45;
+    }
+    .header {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+    .section-title .icon {
+      font-size: 18px;
+      color: var(--accent);
+      opacity: 0.9;
+    }
+    .field {
+      margin-bottom: 12px;
+    }
+    .field:last-child { margin-bottom: 0; }
+    .field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+    select {
+      width: 100%;
+      padding: 10px 36px 10px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 18px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    select:hover { border-color: #9ca3af; }
+    select:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: var(--shadow-focus);
+    }
+    select:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .visa-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .cta-section {
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+    .cta-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      width: 100%;
+      text-align: left;
+      box-shadow: var(--shadow);
+    }
+    .cta-item:hover:not(:disabled) {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .cta-item:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .cta-item.is-loading { pointer-events: none; opacity: 0.8; }
+    .cta-item.is-success {
+      border-color: var(--success);
+      background: var(--success-soft);
+      color: var(--success);
+    }
+    .cta-item.is-error {
+      border-color: var(--error);
+      background: var(--error-soft);
+      color: var(--error);
+    }
+    .cta-item .material-symbols-outlined {
+      font-size: 22px;
+      color: inherit;
+      opacity: 0.9;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      min-height: 18px;
+      padding-left: 2px;
+    }
+    .response-section {
+      margin-top: 16px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .response-section .section-title { margin-bottom: 8px; }
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+    .section-title-row .section-title { margin-bottom: 0; }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: inherit;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .copy-btn:hover { background: #dbeafe; }
+    .copy-btn .material-symbols-outlined { font-size: 16px; }
+    .copy-btn.copied { color: var(--success); background: var(--success-soft); }
+    .response-body {
+      font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text);
+      background: #f8f9fa;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      min-height: 320px;
+      max-height: 520px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 0;
+    }
+    .response-body.error { background: var(--error-soft); border-color: #fecaca; color: var(--error); }
+    .response-body.success { background: var(--success-soft); border-color: #a7f3d0; }
+    #steps {
+      max-height: 420px;
+      min-height: 220px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      padding-right: 2px;
+    }
+    .phase-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      margin-top: 4px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
+      border-left-width: 4px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .phase-step .phase-icon {
+      font-size: 10px;
+      opacity: 0.9;
+    }
+    .phase-step .phase-message {
+      flex: 1;
+    }
+    .leg-done-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      background: var(--success-soft);
+      border: 1px solid var(--success);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--success);
+    }
+    .leg-done-step .leg-done-badge {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--surface);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .done-step {
+      padding: 10px 12px;
+      margin-top: 6px;
+      margin-bottom: 8px;
+      background: var(--success-soft);
+      border: 1px solid var(--success);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--success);
+      text-align: center;
+    }
+    .thinking-step {
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--text-muted);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      background: #fafafa;
+    }
+    .thinking-title {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .thinking-details {
+      margin: 0;
+      font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+      font-size: 11px;
+      background: #f0f0f0;
+      padding: 8px;
+      border-radius: 4px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 140px;
+      overflow-y: auto;
+    }
+    .raw-log {
+      min-height: 120px;
+      max-height: 220px;
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">Extract content from the current page</div>
+
+  <div class="section">
+    <div class="section-title">
+      <span class="material-symbols-outlined icon">badge</span>
+      Passport
+    </div>
+    <div class="field">
+      <label for="passportCountry">Country of passport</label>
+      <select id="passportCountry" title="Select passport-issuing country">
+        <option value="">Select country</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <span class="material-symbols-outlined icon">travel_explore</span>
+      Visa
+    </div>
+    <div class="field">
+      <label for="visaCountry">Destination country</label>
+      <select id="visaCountry" title="Country that issues the visa">
+        <option value="">Select country</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="visaType">Visa type</label>
+      <select id="visaType" title="Type of visa" disabled>
+        <option value="">Select visa type</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <button type="button" id="addAsText" class="cta-item">
+      <span class="material-symbols-outlined">description</span>
+      <span>Add as text</span>
+    </button>
+    <button type="button" id="useTestPayload" class="cta-item" style="margin-top: 10px;">
+      <span class="material-symbols-outlined">science</span>
+      <span>Use test payload</span>
+    </button>
+    <button type="button" id="useStructuredValidateTest" class="cta-item" style="margin-top: 10px;">
+      <span class="material-symbols-outlined">verified</span>
+      <span>Use validate structured test</span>
+    </button>
+  </div>
+  <div id="status"></div>
+  <div id="requestSection" class="response-section" style="display: none;">
+    <div class="section-title-row">
+      <span class="section-title">
+        <span class="material-symbols-outlined icon">code</span>
+        Request JSON
+      </span>
+      <button type="button" id="copyRequestBtn" class="copy-btn" title="Copy JSON">
+        <span class="material-symbols-outlined">content_copy</span>
+        <span id="copyRequestLabel">Copy</span>
+      </button>
+    </div>
+    <pre id="requestBody" class="response-body"></pre>
+  </div>
+  <div id="responseSection" class="response-section" style="display: none;">
+    <div class="section-title">
+      <span class="material-symbols-outlined icon">reply</span>
+      API response
+    </div>
+    <div id="steps"></div>
+    <pre id="rawResponse" class="response-body raw-log"></pre>
+  </div>
+
+  <script src="countries-data.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

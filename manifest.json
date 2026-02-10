@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Page Extractor",
+  "version": "3.0.0",
+  "description": "Extract page content as text.",
+  "permissions": ["activeTab", "scripting", "downloads", "tabs"],
+  "host_permissions": ["https://boarding-agent-api-production.up.railway.app/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Extract page as text"
+  },
+  "icons": {
+    "16": "icon16black.png",
+    "48": "icon48black.png",
+    "128": "icon128black.png"
+  }
+}
