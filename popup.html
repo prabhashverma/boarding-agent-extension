@@ -361,8 +361,46 @@
       <span class="material-symbols-outlined">verified</span>
       <span>Use validate structured test</span>
     </button>
+    <button type="button" id="decodeTfsBtn" class="cta-item" style="margin-top: 10px;">
+      <span class="material-symbols-outlined">code</span>
+      <span>Decode TFS (protobuf from URL)</span>
+    </button>
+    <button type="button" id="getAirlineBtn" class="cta-item" style="margin-top: 10px;">
+      <span class="material-symbols-outlined">flight</span>
+      <span>Get airline from page</span>
+    </button>
+    <button type="button" id="extractItineraryBtn" class="cta-item" style="margin-top: 10px;">
+      <span class="material-symbols-outlined">route</span>
+      <span>Extract itinerary from page</span>
+    </button>
   </div>
   <div id="status"></div>
+  <div id="itinerarySection" class="response-section" style="display: none;">
+    <div class="section-title-row">
+      <span class="section-title">
+        <span class="material-symbols-outlined icon">route</span>
+        Extracted itinerary
+      </span>
+      <button type="button" id="copyItineraryBtn" class="copy-btn" title="Copy">
+        <span class="material-symbols-outlined">content_copy</span>
+        <span id="copyItineraryLabel">Copy</span>
+      </button>
+    </div>
+    <pre id="itineraryDecoded" class="response-body" style="min-height: 120px; max-height: 360px;"></pre>
+  </div>
+  <div id="tfsSection" class="response-section" style="display: none;">
+    <div class="section-title-row">
+      <span class="section-title">
+        <span class="material-symbols-outlined icon">decode</span>
+        Decoded TFS (protobuf)
+      </span>
+      <button type="button" id="copyTfsBtn" class="copy-btn" title="Copy decoded">
+        <span class="material-symbols-outlined">content_copy</span>
+        <span id="copyTfsLabel">Copy</span>
+      </button>
+    </div>
+    <pre id="tfsDecoded" class="response-body" style="min-height: 120px; max-height: 360px;"></pre>
+  </div>
   <div id="requestSection" class="response-section" style="display: none;">
     <div class="section-title-row">
       <span class="section-title">
